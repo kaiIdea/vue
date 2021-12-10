@@ -1,0 +1,34 @@
+<html>
+	<head>
+		
+		
+	</head>
+	<body>
+		<div id ='app'>
+			{{show_my_text}}
+		</div>
+		<!-- <script src＝"https://unpkg.com/vue/dist/vue.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script>
+			
+			var myData = {
+				show_my_text:'good...'
+			};
+		
+			//1.创建Vue实例对象demo.
+			//2.el元素指定页面上已经存在的DOM元素挂载Vue实例。
+			var demo = new Vue({
+				//el: Document.getElementId('app') 或者 el: "#app"
+				"el":"#app",
+				"data":myData
+			});
+
+			console.log(myData.show_my_text);
+			
+			myData.show_my_text = 'Greet...'
+			
+			console.log(myData.show_my_text);
+			console.log(demo.data);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id ='app1' v-cloak>
+        {{message}}
+    </div>
+
+
+    <div id ='app2'>
+        <p v-if="status === 1">1</p>
+        <p v-else-if="status === 2">2</p>
+        <p v-else>3</p>
+    </div>
+
+
+    <div id = 'app3'>
+        <template v-if="status === 1">
+            <p>这是一段文本</p>
+            <p>这是一段文本</p>
+            <p>这是一段文本</p>
+        </template>
+    </div>
+
+<!--    app1-->
+    <script>
+        var app1 = new Vue({
+            el:'#app1',
+            data:{
+                message:'文本'
+            }
+        });
+    </script>
+
+<!--    app2-->
+    <script>
+        var app2 = new Vue({
+            el:'#app2',
+            data:{
+                status:1
+            }
+        });
+    </script>
+
+
+<!--    app3-->
+    <script>
+        var app3 = new Vue({
+            el:'#app3',
+            data:{
+                status:2
+            }
+        });
+    </script>
+</body>
+</html>

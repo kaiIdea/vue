@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Part6 Vue1.html</title>
+</head>
+<body>
+    <div id = 'app1'>
+        <textarea v-model="text" aria-placeholder="输入..."></textarea>
+        <p>输入的内容是：</p>
+        <p style="white-space: pre">{{text}}</p>
+<!--        <input type="text" v-model="text">-->
+    </div>
+
+
+    <div id = 'app2'>
+        <input type="text" @input="handleInput" placeholder="输入...">
+        <p>{{message}}</p>
+    </div>
+
+    <div id = 'app3'>
+        <input type="radio" v-model="picked" value="HTML" id = "HTML">
+        <label for="html">HTML</label>
+
+        <input type="radio" v-model="picked" value="js" id = "js">
+        <label for="js">js</label>
+
+        <input type="radio" v-model="picked" value="css" id = "css">
+        <label for="css">css</label>
+
+        <p>选择的项是: {{picked}}</p>
+    </div>
+
+<!--    app1-->
+    <script>
+        var app1 = new Vue({
+            el:'#app1',
+            data:{
+                text:''
+            }
+        })
+    </script>
+
+<!--    app2-->
+    <script>
+        var app2 = new Vue({
+            el:'#app2',
+            data:{
+                message:''
+            },
+            methods:{
+                handleInput:function (e) {
+                    this.message = e.target.value;
+                }
+            }
+        })
+    </script>
+
+<!--    app3-->
+    <script>
+        var app3 = new Vue({
+            el:'#app3',
+            data:{
+                picked:'HTML'
+            }
+        })
+    </script>
+</body>
+</html>

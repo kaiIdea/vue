@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Part4 Vue2.html</title>
+</head>
+<body>
+    <div id = 'app1'>
+<!--        <div :class="[isActive?activeCls:'',errorCls]"></div>-->
+        <div :class="[{'active':isActive},errorCls]"></div>
+    </div>
+
+    <script>
+        var app1 = new Vue({
+            el:'#app1',
+            data:{
+                isActive:true,
+                activeCls:'active',
+                errorCls:'error'
+            }
+        })
+    </script>
+
+</body>
+</html>

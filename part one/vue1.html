@@ -1,0 +1,26 @@
+<html>
+	<head>
+		
+		
+	</head>
+	<body>
+		<div id ='app'>
+			<ul>
+				<li v-for="book in books">{{ book.name }}</li> 
+			</ul>
+		</div>
+		<!-- <script src＝"https://unpkg.com/vue/dist/vue.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script>
+			var demo = new Vue({
+				"el":"#app",
+				"data":{
+					books:[
+							{name: 'vue'},
+							{name: 'javascript'}
+					]
+				}
+			});
+		</script>
+	</body>
+</html>

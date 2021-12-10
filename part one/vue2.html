@@ -1,0 +1,27 @@
+<html>
+	<head>
+		
+		
+	</head>
+	<body>
+		<div id ='app'>
+			<!-- v-model的值对应data属性里面的name字段，这就是数据绑定 -->
+			<input type='text' v-model = 'name' placeholder='111'>
+			<h1>你好，{{ name }}</h1>
+			
+			
+		</div>
+		<!-- <script src＝"https://unpkg.com/vue/dist/vue.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script>
+			var demo = new Vue({
+				"el":"#app",
+				"data":{
+					name: ''
+				}
+			});
+			
+			
+		</script>
+	</body>
+</html>

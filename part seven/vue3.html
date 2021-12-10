@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Part7 Vue3.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id = 'app1'>
+        <my-component6 message="来自父的数据"></my-component6>
+    </div>
+    <div id = 'app2'>
+        <my-component7 warning-text="提示信息"></my-component7>
+    </div>
+
+    <div id = 'app3'>
+        <input type="text" v-model="parentMessage">
+        <my-component8 :message="parentMessage"></my-component8>
+    </div>
+    <div id = 'app4'>
+        <my-component9 message="[1,2,3]"></my-component9>
+        <my-component9 :message="[1,2,3]"></my-component9>
+    </div>
+<!--    app1-->
+    <script>
+        Vue.component('my-component6',{
+            props: ['message'],
+            template:'<div>{{message}}</div>'
+        })
+        var app1 = new Vue({
+            el:'#app1',
+            data:{}
+        })
+    </script>
+<!--app2-->
+    <script>
+        Vue.component('my-component7',{
+            props:['warningText'],
+            template: '<div>{{warningText}}</div>'
+        });
+
+        var app2 = new Vue({
+            el:'#app2',
+            data:{}
+        })
+    </script>
+
+    <!--app3-->
+    <script>
+        Vue.component('my-component8',{
+            props:['message'],
+            template:'<div>{{message}}</div>'
+        })
+
+        var app3 = new Vue({
+            el:'#app3',
+            data:{
+                parentMessage:''
+            }
+        })
+    </script>
+
+
+    <!--app4-->
+    <script>
+        Vue.component('my-component9',{
+            props:['message'],
+            template:'<div>{{message.length}}</div>'
+        });
+        var app4 = new Vue({
+            el:'#app4',
+            data:{}
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Part7 Vue4.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+<div id = 'app1'>
+    <my-component10 init-count="1"></my-component10>
+</div>
+<div id = 'app2'>
+    <p>总数：{{total}}</p>
+    <my-component11 @increase="handleGetTotal" @reduce="handleGetTotal"></my-component11>
+</div>
+<div id = 'app3'></div>
+<div id = 'app4'></div>
+
+<!--app1-->
+<script>
+    Vue.component('my-component10',{
+        props:['initCount'],
+        template:'<div>{{count}}</div>',
+        data:function (){
+            return {count:this.initCount}
+        }
+    });
+    var app1 = new Vue({
+        el:'#app1',
+        data:{}
+    })
+</script>
+
+<!--app2-->
+<script>
+    Vue.component('my-component11',{
+        template:'<div><button @click="handleIncrease">+1</button><button @click="handleReduce">-1</button></div>',
+        data:function (){
+            return {counter:0}
+        },
+        methods:{
+            handleIncrease:function (){
+                this.counter++;
+                this.$emit('increase',this.counter);
+            },
+            handleReduce:function (){
+                this.counter--;
+                this.$emit('reduce',this.counter);
+            }
+        }
+    })
+    var app2 = new Vue({
+        el:'#app2',
+        data:{
+            total:0
+        },
+        methods:{
+            handleGetTotal: function (total) {
+                this.total = total;
+            }
+        }
+    })
+</script>
+
+<!--app3-->
+<script>
+    var app3 = new Vue({
+        el:'#app3',
+        data:{}
+    })
+</script>
+
+<!--app4-->
+<script>
+    var app4 = new Vue({
+        el:'#app4',
+        data:{}
+    })
+</script>
+</body>
+</html>

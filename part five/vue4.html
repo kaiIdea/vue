@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id = 'app1' v-show="status === 1">
+        <ul>
+            <template v-for="book in books">
+                <li>书名：{{book.name}}</li>
+                <li>作者：{{book.author}}</li>
+            </template>
+        </ul>
+    </div>
+
+
+    <div id = 'app2'>
+        <ul>
+            <template v-for="book in sortedBooks">
+                <li>书名：{{book.name}}</li>
+                <li>作者：{{book.author}}</li>
+            </template>
+        </ul>
+    </div>
+</body>
+<!--    app1-->
+    <script>
+        var app1 = new Vue({
+            el:'#app1',
+            data:{
+                status:2,
+                books:[
+                    {name:'Think in java',author:'coin li'},
+                    {name:'操作系统',author:'Jack Chen'},
+                    {name:'编译原理',author:'JackSon'}
+                ]
+            }
+        });
+        Vue.set(app1.books,3,{
+            name:'css',
+            author:'lili'
+        });
+
+        // app1.books = app1.books.filter(function (item){
+        //     return item.name.match('java');
+        // });
+
+        // this.$set(app1.books,4,{
+        //     name:'css',
+        //     author:'lili'
+        // });
+    </script>
+
+<!--    app2-->
+    <script>
+        var app2 = new Vue({
+            el:'#app2',
+            data:{
+                books:[
+                    {name:'Think in java',author:'coin li'},
+                    {name:'操作系统java122',author:'Jack Chen'},
+                    {name:'编译原理java323444421',author:'JackSon'}
+                ]
+            },
+            computed:{
+                filtersBooks:function () {
+                    return this.books.filter(function (book) {
+                        return book.name.match('java');
+                    })
+                },
+                sortedBooks:function (){
+                    return this.books.sort(function (a, b) {
+                        return a.name.length > b.name.length;
+                    })
+                }
+
+            }
+        })
+    </script>
+</html>

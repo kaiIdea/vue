@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Part7 Vue1.html</title>
+</head>
+<body>
+<Card style="width:350px;">
+    <p slot="title">与 xxx 聊天中</p>
+    <a href="#" slot="extra">
+        <Icon type="android-close" size=" 18"></Icon>
+    </a>
+    <div style="height: 100px">
+    </div>
+    <div>
+        <Row :gutter="16">
+            <i-col span="17">
+        <i-input v-model="value" placeholder="请输入..."></i-input>
+    </i-col> <i-col span="4"> <i- button type="primary" icon="paper-airplane">发送<i-button></i-button></i->
+    </i-col>
+    </Row>
+    </div>
+</Card>
+</body>
+</html>

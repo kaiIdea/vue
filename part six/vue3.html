@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Part6 Vue3.html</title>
+</head>
+<body>
+<div id='app1'>
+    <select v-model="selected1" multiple>
+        <option>html</option>
+        <option>js</option>
+        <option>css</option>
+    </select>
+    <p>select选择项是:{{ selected1 }}</p>
+</div>
+
+
+<div id='app2'>
+    <select v-model="selected2">
+        <option v-for="option in options" :value="option.text">{{option.value}}</option>
+    </select>
+    <p>select2选择项是:{{ selected2 }}</p>
+</div>
+
+<!--    app1-->
+<script>
+    var appapp13 = new Vue({
+        el:'#app1',
+        data:{
+            selected1:['js','css']
+        }
+    })
+</script>
+
+
+<!--app2-->
+<script>
+    var app2 = new Vue({
+        el:'#app2',
+        data:{
+            selected2:'js',
+            options:[
+                {value:'HTML',text:'html'},
+                {value:'JS',text:'js'},
+                {value:'CSS',text:'css'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

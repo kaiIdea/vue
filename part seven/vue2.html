@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Part7 Vue2.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id = 'app1'>
+        <my-component></my-component>
+    </div>
+
+    <div id = 'app2'>
+        <my-component1></my-component1>
+    </div>
+
+    <div id = 'app3'>
+        <my-component3></my-component3>
+    </div>
+
+
+    <div id = 'app4'>
+        <my-component4></my-component4>
+        <my-component4></my-component4>
+        <my-component4></my-component4>
+    </div>
+
+    <div id = 'app5'>
+        <my-component5></my-component5>
+        <my-component5></my-component5>
+        <my-component5></my-component5>
+    </div>
+</body>
+
+<!--    app1-->
+    <script>
+        Vue.component('my-component',{
+            template:'<div>组件实例</div>'
+        });
+        var app1 = new Vue({
+            el:'#app1'
+        });
+    </script>
+
+<!--    app2-->
+    <script>
+        var child = {
+            template: '<div>局部组件</div>'
+        };
+
+        var app2 = new Vue({
+            el:'#app2',
+            components:{
+                'my-component1':child
+            }
+        });
+    </script>
+
+<!--app3-->
+    <script>
+        Vue.component('my-component3',{
+            template: '<div>{{message}}</div>',
+            data:function (){
+                return {message:'组件内容'}
+            }
+        });
+
+
+        var app3 = new Vue({
+            el:'#app3',
+            data:{
+                //message:'1111'
+            }
+        })
+    </script>
+
+
+<!--    app4-->
+    <script>
+        var data={
+            counter:0
+        }
+        Vue.component('my-component4',{
+            template: '<button @click="counter++">{{ counter }}</button>',
+            data:function () {
+                return data;
+            }
+        });
+        var app4 = new Vue({
+            el:'#app4'
+        })
+    </script>
+
+
+<!--    app5-->
+
+    <script>
+        //注册组件(全局注册)
+        Vue.component('my-component5',{
+            template: '<button @click="counter1++">{{ counter1 }}</button>',
+            data:function (){
+                return {
+                    counter1: 0
+                }
+            }
+        });
+        var app5 = new Vue({
+            el:'#app5'
+        })
+    </script>
+</html>

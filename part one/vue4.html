@@ -1,0 +1,155 @@
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		
+	</head>
+	<body>
+		<div id ='app'>
+			<!-- 双括号是最基本的文本插值方法，会自动显示双向绑定的数据。 -->
+			{{show_my_text}}
+		</div>
+		
+		<div id = 'app1'>
+			{{date}}
+		</div>		
+
+		<div id = 'app2'>
+			<span v-html='link'></span>
+		</div>
+			
+		<div id = 'app3'>
+			<span v-pre>这里的内容是不会被编译的</span>
+		</div>		
+		
+		
+		<div id = 'app4'>
+			{{number / 10}}
+			{{isOK ? '确定':'取消'}}
+			{{text.split(',').reverse().join(',')}}
+		</div>
+		
+		
+		<div id = 'app5'>
+			{{date|formatter}}
+		</div>
+		
+		<!-- app -->
+		<script>
+		
+			//1.创建Vue实例对象demo.
+			//2.el元素指定页面上已经存在的DOM元素挂载Vue实例。
+			var demo = new Vue({
+				//el: Document.getElementId('app') 或者 el: "#app"
+				"el":"#app",
+				"data":{
+					show_my_text: 'dudu...'
+				},
+				//实例创建完成后调用，此阶段完成了数据的观测等，但尚未挂载，$el还不可用。可以用户初始化一些数据
+				created: function(){
+					console.log(this.show_my_text);
+				},
+				//el挂载到实例上后调用，一般我们的第一个业务逻辑会在这里开始。
+				mounted: function(){
+					console.log(this.$el);
+				}
+			});
+		</script>
+		
+		
+		<!-- app1 -->
+		<script>
+			var app1 = new Vue({
+				el: '#app1',
+				data:{
+					date: new Date()
+				},
+				
+				mounted: function(){
+					//声明一个变量指向vue实例this,保证作用域一致
+					var _this = this;
+					this.timer = setInterval(function(){
+						_this.date = new Date();
+					},1000);
+				},
+				//实例销毁前，清除定时器
+				beforeDestory: function(){
+					if(this.timer){
+						clearInterval(this.timer);
+					}
+				}
+			})
+		</script>
+		
+		
+		<!-- app2 -->
+		<script>
+			//想输出html，而不是将数据解释后的纯文本，可以使用v-html
+			var app2 = new Vue({
+				el: '#app2',
+				data: {
+					link: '<a href="https://www.baidu.com/">点击</a>'
+				}
+			})
+		</script>
+		
+		<!-- app4 -->
+		<script>
+			var app4 = new Vue({
+				el: '#app4',
+				data: {
+					number: 20,
+					isOK: true,
+					text: '123,456'
+				}
+			})
+		</script>
+		
+		
+		<!-- app5 -->
+		<script>
+			var padDate = function(value){
+			
+				return value < 10 ?'0'+value:value;
+			};
+		
+		
+			var app5 = new Vue({
+				el: '#app5',
+				data:{
+					date: new Date()
+				},
+				filters:{
+					formatter: function(value){
+						var date = new Date(value);
+						
+						var year = date.getFullYear();
+						
+						var month = padDate(date.getMonth()+1);
+						
+						var day = padDate(date.getDate());
+						
+						var hour = padDate(date.getHours());
+						
+						var minutes = padDate(date.getMinutes());
+						
+						var seconds = padDate(date.getSeconds());
+						
+						return year+'-'+month+'-'+day+' '+hour+':'+minutes+':'+seconds;
+					}
+				},
+				
+				mounted: function(){
+					var _this = this;
+					this.timer = setInterval(function(){
+						_this.date = new Date();
+					},1000);
+				},
+				beforeDestory: function(){
+					if(this.timer){
+						clearInterval(this.timer);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

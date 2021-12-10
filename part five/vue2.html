@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id = 'app1'>
+        <template v-if="type ==='name'">
+            <label>用户名：</label>
+            <input placeholder="输入用户名..." key="name-input">
+        </template>
+
+        <template v-else>
+            <label>邮箱号：</label>
+            <input placeholder="输入邮箱..." key="main-input">
+        </template>
+
+        <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+</body>
+    <script>
+        var app1 = new Vue({
+            el:'#app1',
+            data:{
+                type:'name'
+            },
+            methods:{
+                handleToggleClick:function (){
+                    this.type = this.type ==='name'?'main':'name';
+                }
+            }
+        })
+    </script>
+</html>

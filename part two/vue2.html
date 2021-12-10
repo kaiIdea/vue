@@ -1,0 +1,72 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id='app1'>
+			<a v-bind:href='url'>链接</a>
+			<img v-bind:src='imgUrl'>
+		</div>		
+
+		<div id='app2'>
+			<p v-if="show">文本内容</p>
+            <button v-on:click="handleClose">点击隐藏/显示</button>
+		</div>
+
+
+        <div id='app3'>
+            <p v-if="show">初始化顺序</p>
+        </div>
+	</body>
+	<script>
+		var app1 = new Vue({
+			el: '#app1',
+			data:{
+				url:'https:www.baidu.com',
+				imgUrl: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+			}
+		});
+	</script>
+
+
+    <script>
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                show: true,
+            },
+            methods:{
+                handleClose: function (){
+                    this.close();
+                },
+                close: function (){
+                    if(this.show){
+                        this.show = false;
+                    }else{
+                        this.show = true;
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                show: true
+            },
+            methods: {
+                init: function (text) {
+                    console.log(text);
+                }
+            },
+            mounted() {
+                this.init('在初始化时调用...');
+            }
+        });
+        app3.init('通过外部调用...');
+    </script>
+</html>
